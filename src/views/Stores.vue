@@ -9,18 +9,18 @@ const show = ref(false);
 const itemsRef = collection(firestore, "stores");
 const items = useCollection(itemsRef);
 const newItem = ref({ name: "", quantity: 1 });
-const addItem = async () => {
-  console.log(itemsRef, newItem.value);
-  await addDoc(itemsRef, newItem.value);
-  newItem.value = { name: "", quantity: 1 };
-};
+// const addItem = async () => {
+//   console.log(itemsRef, newItem.value);
+//   await addDoc(itemsRef, newItem.value);
+//   newItem.value = { name: "", quantity: 1 };
+// };
 </script>
 
 <template>
   <div>
     <v-row dense>
       <v-col v-for="(item, index) in items" :key="index" cols="12">
-        <v-card class="mx-auto" max-width="344">
+        <v-card class="mx-auto" max-width="250">
           <v-img height="100px" :src="item.imageUrl" cover></v-img>
 
           <v-card-title> {{ item.name }} </v-card-title>

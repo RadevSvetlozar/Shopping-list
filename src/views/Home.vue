@@ -1,43 +1,32 @@
-<script setup>
-import { ref } from "vue";
-import { useCollection } from "vuefire";
-import { firestore } from "../firebase";
-import { collection, addDoc } from "firebase/firestore";
-</script>
+<script setup></script>
 
 <template>
-  <div>
-    <v-row dense>
-      <v-col v-for="(item, index) in items" :key="index" cols="12">
-        <v-card class="mx-auto" max-width="344">
-          <v-img height="50px" :src="item.imageUrl" cover></v-img>
-
-          <v-card-title> {{ item.name }} </v-card-title>
-
-          <v-card-subtitle> {{ item.address }} </v-card-subtitle>
-
-          <v-card-actions>
-            <v-btn color="orange-lighten-2" text="Explore"></v-btn>
-
-            <v-spacer></v-spacer>
-
-            <v-btn
-              :icon="show ? 'mdi-chevron-up' : 'mdi-chevron-down'"
-              @click="show = !show"
-            ></v-btn>
-          </v-card-actions>
-
-          <v-expand-transition>
-            <div v-show="show">
-              <v-divider></v-divider>
-
-              <v-card-text>
-                {{ item.description }}
-              </v-card-text>
-            </div>
-          </v-expand-transition>
-        </v-card>
-      </v-col>
-    </v-row>
+  <div class="main">
+    <div>
+      <h1>SHOPPING LIST APP</h1>
+      <h2>Make life easier</h2>
+    </div>
   </div>
 </template>
+
+<style>
+.main {
+  height: 90vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+h1 {
+  font-size: xx-large;
+  color: black;
+}
+
+h2 {
+
+  color: rgb(18, 133, 18);
+}
+</style>

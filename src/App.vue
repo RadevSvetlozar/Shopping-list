@@ -36,9 +36,10 @@ const addItem = async () => {
       <v-app-bar-title>Title</v-app-bar-title>
 
       <v-spacer></v-spacer>
-      <v-btn to="/"> Stores </v-btn>
+      <v-btn to="/"> Home </v-btn>
+      <v-btn to="/stores"> Stores </v-btn>
 
-      <v-btn to="/products"> Products to buy </v-btn>
+      <v-btn to="/products"> Products </v-btn>
 
       <v-btn icon>
         <v-icon>mdi-magnify</v-icon>
@@ -54,14 +55,18 @@ const addItem = async () => {
     </v-app-bar>
 
     <v-main>
-      <v-container>
+      <v-container class="main">
         <router-view></router-view>
       </v-container>
     </v-main>
   </v-app>
 </template>
 
-<style scoped>
+<style>
+.main {
+  background-image: url(https://cdn-icons-png.flaticon.com/256/6350/6350718.png);
+  background-repeat: repeat;
+}
 .logo {
   height: 6em;
   padding: 1.5em;
