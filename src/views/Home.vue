@@ -9,16 +9,12 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .main {
-  height: 90vh;
-  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-
 
 h1 {
   font-size: xx-large;
@@ -26,7 +22,6 @@ h1 {
 }
 
 h2 {
-
   color: rgb(18, 133, 18);
 }
 </style>

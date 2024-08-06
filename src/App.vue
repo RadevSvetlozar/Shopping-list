@@ -2,10 +2,11 @@
 import HelloWorld from "./components/HelloWorld.vue";
 import PWABadge from "./components/PWABadge.vue";
 
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useCollection } from "vuefire";
 import { firestore } from "./firebase";
 import { collection, addDoc } from "firebase/firestore";
+import axios from "axios";
 
 const itemsRef = collection(firestore, "productsToBuy");
 const items = useCollection(itemsRef);
@@ -15,11 +16,24 @@ const addItem = async () => {
   await addDoc(itemsRef, newItem.value);
   newItem.value = { name: "", quantity: 1 };
 };
+
+const showMenu = ref(false);
 </script>
 
 <template>
-  <v-app>
+  <v-app class="main">
+    <v-navigation-drawer v-model="showMenu">
+      <v-card class="pa-10 d-flex-column justify-center">
+        <h3>Shopping list app</h3>
+        <v-btn class="ma-4" to="/"> Home </v-btn>
+        <v-btn class="ma-4" to="/historylist"> History </v-btn>
+        <v-btn class="ma-4" to="/stores"> Stores </v-btn>
+        <v-btn class="ma-4" to="/products"> Products </v-btn>
+      </v-card>
+    </v-navigation-drawer>
     <v-app-bar
+      rounded
+      style="position: sticky"
       color="teal-darken-4"
       image="https://picsum.photos/1920/1080?random"
     >
@@ -30,28 +44,10 @@ const addItem = async () => {
       </template>
 
       <template v-slot:prepend>
-        <v-app-bar-nav-icon></v-app-bar-nav-icon>
+        <v-btn class="ma-4" @click="showMenu = !showMenu"> Menu </v-btn>
       </template>
 
-      <v-app-bar-title>Title</v-app-bar-title>
-
-      <v-spacer></v-spacer>
-      <v-btn to="/"> Home </v-btn>
-      <v-btn to="/stores"> Stores </v-btn>
-
-      <v-btn to="/products"> Products </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
+      <v-app-bar-title>Shopping list app</v-app-bar-title>
     </v-app-bar>
 
     <v-main>
@@ -62,10 +58,11 @@ const addItem = async () => {
   </v-app>
 </template>
 
-<style>
+<style scoped>
 .main {
   background-image: url(https://cdn-icons-png.flaticon.com/256/6350/6350718.png);
   background-repeat: repeat;
+  height: 85vh;
 }
 .logo {
   height: 6em;
